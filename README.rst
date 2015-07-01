@@ -21,7 +21,7 @@ Try Out on devstack/fullstack
 
    -  ``sudo su - edxapp -s /bin/bash``
    -  ``. edxapp_env``
-   -  ``pip install -e git+https://github.com/mitodl/edx-sga@release#egg=edx-sga``
+   -  ``pip install -e git+https://github.com/RPI-OPENEDX/edx-sga@RPI-DEV#egg=edx-sga``
 
 2. Add edx\_sga to installed Django apps
 
@@ -37,7 +37,7 @@ Try Out on devstack/fullstack
 
 	 .. code:: javascript
 
-          "ALLOW_ALL_ADVANCED_COMPONENTS": True,
+          "ALLOW_ALL_ADVANCED_COMPONENTS": true,
 
      to the list of ``FEATURES``
 
