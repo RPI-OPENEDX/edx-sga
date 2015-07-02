@@ -1,5 +1,9 @@
 {% load i18n %}
 
+<script src="${static.url('js/lightbox/dist/js/lightbox.js')}"></script>
+<link href="${static.url('js/lightbox/dist/css/lightbox.css')}" rel="stylesheet">
+
+
 <div class="sga-block" data-state="{{ student_state }}" data-max-size="{{ max_file_size }}"
      data-staff="{{ is_course_staff }}">
   <script type="text/template" id="sga-tmpl">
@@ -65,7 +69,7 @@
           <td><%= assignment.fullname %></td>
           <td>
             <% if (assignment.filename) { %>
-              <a href="<%= downloadUrl %>?student_id=<%= assignment.student_id %>">
+              <a href="<%= downloadUrl %>?student_id=<%= assignment.student_id %>" data-lightbox="<%= assignment.student_id %>">
                 <%= assignment.filename %>
               </a>
             <% } %>
