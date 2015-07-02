@@ -66,7 +66,7 @@
           <td>
             <% if (assignment.filename) { %>
               <a href="<%= downloadUrl %>?student_id=<%= assignment.student_id %>">
-                <i><%= assignment.filename %></i>
+                <%= assignment.filename %>
               </a>
             <% } %>
           </td>
