@@ -7,6 +7,15 @@
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/dist/js/jquery.min.js"></script>
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/dist/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/js/jquery.annotate.js"></script>
+<script language="javascript">
+  $.fn.startAnnotating = function(){
+    $("#toAnnotate").annotateImage({
+      editable: true,
+      useAjax: false,
+      notes: [ ]   
+    });
+  };
+</script>
 <!--
 <link type="text/css" rel="stylesheet" href="http://openedx-test2.arc.rpi.edu/static/js/annotorious/css/annotorious.css" />
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/annotorious/annotorious.min.js"></script> -->
@@ -195,13 +204,5 @@
   {% endif %}
 </div>
 
-<script language="javascript">
-  $.fn.startAnnotating = function(){
-    $("#toAnnotate").annotateImage({
-      editable: true,
-      useAjax: false,
-      notes: [ ]   
-    });
-  };
-</script>
+
 
