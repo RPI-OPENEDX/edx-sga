@@ -15,8 +15,13 @@
 
 <script>
   function init() {
-    anno.makeAnnotatable(document.getElementById('toAnnotate'));
+    var myElem = document.getElementById('toAnnotate');
+      if (var) {
+        anno.makeAnnotatable(myElem));
+        myElem.id = 'Annotating';
+      }
     anno.activateSelector();
+    return false;
   }
 </script>
 
