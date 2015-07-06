@@ -14,6 +14,19 @@
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/annotorious/annotorious.min.js"></script> 
 
 <script>
+ jQuery.noConflict();
+ jQuery( document ).ready(function( $ ) {
+    // You can use the locally-scoped $ in here as an alias to jQuery.
+    $( "div" ).hide();
+});
+ // The $ variable in the global scope has the prototype.js meaning.
+window.onload = function(){
+    var mainDiv = $( "main" );
+}
+ 
+</script>
+
+<script>
   function init() {
     anno.makeAnnotatable(document.getElementById('toAnnotate'));
   }
