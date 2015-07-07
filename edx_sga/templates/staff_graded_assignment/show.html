@@ -13,9 +13,7 @@
 
 <script>
     $(document).keypress(function($){
-	   var keycode = (event.keyCode ? event.keyCode : event.which);
-	   if(keycode == '13'){
-            var myElem = document.getElementById('toAnnotate');
+        var myElem = document.getElementById('toAnnotate');
             if (myElem) {
                 $("#toAnnotate").annotateImage({
                     editable: true,
