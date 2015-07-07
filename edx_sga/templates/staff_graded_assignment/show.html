@@ -27,7 +27,7 @@
         }
     });
     
-    $( "a.lb-annotate" ).click(function() {
+    $('body').on('click', 'a.lb-annotate', function () {
         annotateMe();
         alert( "Handler for .click() called." );
     });
