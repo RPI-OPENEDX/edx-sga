@@ -12,20 +12,7 @@
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/js/jquery.annotate.js"></script>
 
 <script>
-    jQuery.fn.annotateMe = function() {
-        var myElem = document.getElementById('toAnnotate');
-        if (myElem) {
-            $("#toAnnotate").annotateImage({
-                editable: true,
-                useAjax: false,
-                notes: []   
-                });
-            myElem.id='Annotating';
-        }
-        return false;
-    }
-    
-    $(document).keypress(function(event){
+    $(document).keypress(function($){
 	   var keycode = (event.keyCode ? event.keyCode : event.which);
 	   if(keycode == '13'){
             var myElem = document.getElementById('toAnnotate');
