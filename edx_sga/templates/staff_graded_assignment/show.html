@@ -27,15 +27,15 @@
         }
     });
     
-    $(document).keypress(function(event){
+    $($(document).keypress(function(event){
  
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if(keycode == '13'){
+	   var keycode = (event.keyCode ? event.keyCode : event.which);
+	   if(keycode == '13'){
 		$(this).annotateMe();
         alert( "Handler for Enter Key called." );	
 	}
  
-    });
+    }););
 </script>
 
 <!--
