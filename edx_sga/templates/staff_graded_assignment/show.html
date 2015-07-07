@@ -12,30 +12,27 @@
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/js/jquery.annotate.js"></script>
 
 <script>
-    jQuery.fn.extend( {
-        annotateMe: function() {
-            var myElem = document.getElementById('toAnnotate');
-            if (myElem) {
-                $("#toAnnotate").annotateImage({
+    jQuery.fn.annotateMe = function() {
+        var myElem = document.getElementById('toAnnotate');
+        if (myElem) {
+            $("#toAnnotate").annotateImage({
                 editable: true,
                 useAjax: false,
                 notes: []   
                 });
-                myElem.id='Annotating';
-            }
-            return false;
+            myElem.id='Annotating';
         }
-    });
+        return false;
+    }
     
-    $($(document).keypress(function(event){
- 
+    $(document).keypress(function(event){
 	   var keycode = (event.keyCode ? event.keyCode : event.which);
 	   if(keycode == '13'){
-		$(this).annotateMe();
+		annotateMe();
         alert( "Handler for Enter Key called." );	
 	}
  
-    }););
+    });
 </script>
 
 <!--
