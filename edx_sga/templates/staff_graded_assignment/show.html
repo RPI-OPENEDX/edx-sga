@@ -12,7 +12,7 @@
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/js/jquery.annotate.js"></script>
 
 <script>
-    jQuery.annotateMe = function() {
+    jQuery.fn.annotateMe = function() {
         var myElem = document.getElementById('toAnnotate');
         if (myElem) {
             $("#toAnnotate").annotateImage({
@@ -28,7 +28,7 @@
     $(document).keypress(function(event){
 	   var keycode = (event.keyCode ? event.keyCode : event.which);
 	   if(keycode == '13'){
-            annotateMe();
+            $(this).annotateMe();
             alert( "Handler for Enter Key called." );	
 	   }
  
