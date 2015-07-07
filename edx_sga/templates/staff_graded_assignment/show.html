@@ -28,8 +28,15 @@
     $(document).keypress(function(event){
 	   var keycode = (event.keyCode ? event.keyCode : event.which);
 	   if(keycode == '13'){
-            $(this).annotateMe();
-            alert( "Handler for Enter Key called." );	
+            var myElem = document.getElementById('toAnnotate');
+            if (myElem) {
+                $("#toAnnotate").annotateImage({
+                    editable: true,
+                    useAjax: false,
+                    notes: []   
+                    });
+                myElem.id='Annotating';
+            }	
 	   }
  
     });
