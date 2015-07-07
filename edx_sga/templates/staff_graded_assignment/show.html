@@ -12,7 +12,7 @@
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/js/jquery.annotate.js"></script>
 
 <script language="javascript">
-      $(window).keypress(function() {
+      ($(window).keypress(function($) {
           alert("first one is fine");
     $("#toAnnotate").annotateImage({
       editable: true,
@@ -32,7 +32,7 @@
                  "id": "e7f44ac5-bcf2-412d-b440-6dbb8b19ffbe", 
                  "editable": true } ]   
     });
-  });
+  });)(jQuery);
 </script>
 
 <!--
