@@ -13,7 +13,7 @@
 
 <script>
     jQuery.fn.extend( {
-        init: function() {
+        annotateMe: function() {
             var myElem = document.getElementById('toAnnotate');
             if (myElem) {
                 $("#toAnnotate").annotateImage({
@@ -25,6 +25,10 @@
             }
             return false;
         }
+    });
+    
+    $( ".lb-annotate" ).click(function() {
+        annotateMe();
     });
 </script>
 
