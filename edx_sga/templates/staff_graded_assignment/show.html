@@ -12,18 +12,19 @@
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/js/jquery.annotate.js"></script>
 
 <script>
-    jQuery.fn.init(function() {
-        var myElem = document.getElementById('toAnnotate');
+    jQuery.fn.extend( {
+        init: function() {
+            var myElem = document.getElementById('toAnnotate');
             if (myElem) {
-                $("toAnnotate").annotateImage({
+                $("#toAnnotate").annotateImage({
                 editable: true,
                 useAjax: false,
                 notes: []   
                 });
                 myElem.id='Annotating';
             }
+            return false;
     });
-    //$('.lb-annotate').click(init());
 </script>
 
 <!--
