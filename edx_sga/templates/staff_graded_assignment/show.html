@@ -12,11 +12,12 @@
 <script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/js/jquery.annotate.js"></script>
 
 <script language="javascript">
-  $("#toAnnotate").load(function() {
-    $("#toAnnotate").annotateImage({
-      editable: true,
-      useAjax: false,
-      notes: [ { "top": 286, 
+    
+    $("#toAnnotate").one("load", function() {
+        $("#toAnnotate").annotateImage({
+            editable: true,
+            useAjax: false,
+            notes: [ { "top": 286, 
                  "left": 161, 
                  "width": 52, 
                  "height": 37, 
@@ -30,8 +31,12 @@
                  "text": "National Gallery Dome", 
                  "id": "e7f44ac5-bcf2-412d-b440-6dbb8b19ffbe", 
                  "editable": true } ]   
+        });
+        jQuery(this).prev("li").attr("toAnnotate","Annotating");
+    }).each(function() {
+        if(this.complete) $(this).load();
     });
-  });
+    
 </script>
 
 <!--
