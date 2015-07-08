@@ -4,53 +4,15 @@
 <link href="http://openedx-test2.arc.rpi.edu/static/js/lightbox/dist/css/lightbox.css" rel="stylesheet">
 
 
-<style type="text/css" media="all">@import "http://openedx-test2.arc.rpi.edu/static/js/flipbit/css/annotation.css";</style>
-<!--
-<script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/dist/js/jquery.min.js"></script>
-<script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/dist/js/jquery-ui.min.js"></script>
--->
-<script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/flipbit/js/jquery.annotate.js"></script>
-
-<script language="javascript">
-      $(window).keypress(function() {
-          alert("first one is fine");
-    jQuery.("#toAnnotate").annotateImage({
-      editable: true,
-      useAjax: false,
-      notes: [ { "top": 286, 
-                 "left": 161, 
-                 "width": 52, 
-                 "height": 37, 
-                 "text": "Small people on the steps", 
-                 "id": "e69213d0-2eef-40fa-a04b-0ed998f9f1f5", 
-                 "editable": false },
-               { "top": 134, 
-                 "left": 179, 
-                 "width": 68, 
-                 "height": 74, 
-                 "text": "National Gallery Dome", 
-                 "id": "e7f44ac5-bcf2-412d-b440-6dbb8b19ffbe", 
-                 "editable": true } ]   
-    });
-  });
-       
-</script>
-
-<!--
-<link type="text/css" rel="stylesheet" href="http://openedx-test2.arc.rpi.edu/static/js/annotorious/css/annotorious.css" />
-<script type="text/javascript" src="http://openedx-test2.arc.rpi.edu/static/js/annotorious/annotorious.dev.js"></script> 
+<style type="text/css" media="all">@import "http://openedx-test2.arc.rpi.edu/static/js/annotator.min.css";</style>
+<style type="text/css" media="all">@import "http://openedx-test2.arc.rpi.edu/static/js/annotator-full.min.js";</style>
 
 <script>
-  function init() {
-    var myElem = document.getElementById('toAnnotate');
-      if (myElem) {
-        anno.makeAnnotatable(myElem);
-        myElem.id = 'Annotating';
-      }
-    anno.activateSelector();
-  }
+        var ann = Annotator(document.body); 
+        ann.setupPlugins();
 </script>
--->
+
+
 
 
 <div class="sga-block" data-state="{{ student_state }}" data-max-size="{{ max_file_size }}"
