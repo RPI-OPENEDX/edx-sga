@@ -303,10 +303,12 @@ class StaffGradedAssignmentXBlock(XBlock):
 
                 state = json.loads(module.state)
                 score = self.get_score(student.student_id)
-                approved = score is not None
                 if score is None:
                     score = state.get('staff_score')
-                    needs_approval = score is not None
+                approved = score is not None
+                if score is None and state.get('staff_score') is None:
+                    #score = state.get('staff_score')
+                    needs_approval = True
                 else:
                     needs_approval = False
                 instructor = self.is_instructor()
@@ -547,7 +549,9 @@ class StaffGradedAssignmentXBlock(XBlock):
             uuid = request.params['submission_id']
             submissions_api.set_score(uuid, score, self.max_score())
         else:
-            state['staff_score'] = score
+            #state['staff_score'] = score
+            uuid = request.params['submission_id']
+            submissions_api.set_score(uuid, score, self.max_score())
         state['comment'] = request.params.get('comment', '')
         module.state = json.dumps(state)
         module.save()
