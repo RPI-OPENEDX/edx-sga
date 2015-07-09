@@ -547,7 +547,7 @@ class StaffGradedAssignmentXBlock(XBlock):
             uuid = request.params['submission_id']
             submissions_api.set_score(uuid, score, self.max_score())
         else:
-            state['staff_score'] = score
+            #state['staff_score'] = score
             uuid = request.params['submission_id']
             submissions_api.set_score(uuid, score, self.max_score())
         state['comment'] = request.params.get('comment', '')
