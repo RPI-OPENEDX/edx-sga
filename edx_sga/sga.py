@@ -62,7 +62,7 @@ class StaffGradedAssignmentXBlock(XBlock):
     """
     has_score = True
     icon_class = 'problem'
-    STUDENT_FILEUPLOAD_MAX_SIZE = 4 * 1000 * 1000  # 4 MB
+    STUDENT_FILEUPLOAD_MAX_SIZE = 10 * 1000 * 1000  # 4 MB
 
     display_name = String(
         default='Staff Graded Assignment', scope=Scope.settings,
@@ -306,7 +306,7 @@ class StaffGradedAssignmentXBlock(XBlock):
                 if score is None:
                     score = state.get('staff_score')
                 approved = score is not None
-                if score is None and state.get('staff_score') is None:
+                if score is None and state.get('staff_score') is not None:
                     #score = state.get('staff_score')
                     needs_approval = True
                 else:
