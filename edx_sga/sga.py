@@ -303,10 +303,12 @@ class StaffGradedAssignmentXBlock(XBlock):
 
                 state = json.loads(module.state)
                 score = self.get_score(student.student_id)
-                approved = score is not None
                 if score is None:
                     score = state.get('staff_score')
-                    needs_approval = score is not None
+                approved = score is not None
+                if score is None and state.get('staff_score') is None:
+                    #score = state.get('staff_score')
+                    needs_approval = True
                 else:
                     needs_approval = False
                 instructor = self.is_instructor()
