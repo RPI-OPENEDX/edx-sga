@@ -62,7 +62,7 @@ class StaffGradedAssignmentXBlock(XBlock):
     """
     has_score = True
     icon_class = 'problem'
-    STUDENT_FILEUPLOAD_MAX_SIZE = 10 * 1000 * 1000  # 4 MB
+    STUDENT_FILEUPLOAD_MAX_SIZE = 15 * 1000 * 1000  # 15 MB
 
     display_name = String(
         default='Staff Graded Assignment', scope=Scope.settings,
