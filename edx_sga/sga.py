@@ -62,7 +62,7 @@ class StaffGradedAssignmentXBlock(XBlock):
     """
     has_score = True
     icon_class = 'problem'
-    STUDENT_FILEUPLOAD_MAX_SIZE = 15 * 1000 * 1000  # 15 MB
+    STUDENT_FILEUPLOAD_MAX_SIZE = 4 * 1000 * 1000  # 4 MB
 
     display_name = String(
         default='Staff Graded Assignment', scope=Scope.settings,
@@ -215,6 +215,7 @@ class StaffGradedAssignmentXBlock(XBlock):
         )
         fragment.add_css(_resource("static/css/edx_sga.css"))
         fragment.add_javascript(_resource("static/js/src/edx_sga.js"))
+        fragment.add_javascript(_resource("static/js/src/jquery.tablesorter.min.js"))
         fragment.initialize_js('StaffGradedAssignmentXBlock')
         return fragment
 
@@ -283,8 +284,6 @@ class StaffGradedAssignmentXBlock(XBlock):
                 if not submission:
                     continue
                 user = user_by_anonymous_id(student.student_id)
-                if not user:
-                    continue
                 module, created = StudentModule.objects.get_or_create(
                     course_id=self.course_id,
                     module_state_key=self.location,
@@ -306,7 +305,7 @@ class StaffGradedAssignmentXBlock(XBlock):
                 approved = score is not None
                 if score is None:
                     score = state.get('staff_score')
-
+                    needs_approval = score is not None
                 else:
                     needs_approval = False
                 instructor = self.is_instructor()
@@ -492,7 +491,12 @@ class StaffGradedAssignmentXBlock(XBlock):
         submission = self.get_submission(request.params['student_id'])
         answer = submission['answer']
         path = self._file_storage_path(answer['sha1'], answer['filename'])
-        return self.download(path, answer['mimetype'], answer['filename'])
+        return self.download(
+            path,
+            answer['mimetype'],
+            answer['filename'],
+            require_staff=True
+        )
 
     @XBlock.handler
     def staff_download_annotated(self, request, suffix=''):
@@ -510,20 +514,36 @@ class StaffGradedAssignmentXBlock(XBlock):
         return self.download(
             path,
             state['annotated_mimetype'],
-            state['annotated_filename']
+            state['annotated_filename'],
+            require_staff=True
         )
 
-    def download(self, path, mime_type, filename):
+    def download(self, path, mime_type, filename, require_staff=False):
         """
         Return a file from storage and return in a Response.
         """
-        file_descriptor = default_storage.open(path)
-        app_iter = iter(partial(file_descriptor.read, BLOCK_SIZE), '')
-        return Response(
-            app_iter=app_iter,
-            content_type=mime_type,
-            content_disposition=("attachment; filename=" +
-                                 filename.encode('utf-8')))
+        try:
+            file_descriptor = default_storage.open(path)
+            app_iter = iter(partial(file_descriptor.read, BLOCK_SIZE), '')
+            return Response(
+                app_iter=app_iter,
+                content_type=mime_type,
+                content_disposition="attachment; filename=" + filename.encode('utf-8'))
+        except IOError:
+            if require_staff:
+                return Response(
+                    "Sorry, assignment {} cannot be found at"
+                    " {}. Please contact {}".format(
+                        filename.encode('utf-8'), path, settings.TECH_SUPPORT_EMAIL
+                    ),
+                    status_code=404
+                )
+            return Response(
+                "Sorry, the file you uploaded, {}, cannot be"
+                " found. Please try uploading it again or contact"
+                " course staff".format(filename.encode('utf-8')),
+                status_code=404
+            )
 
     @XBlock.handler
     def get_staff_grading_data(self, request, suffix=''):
